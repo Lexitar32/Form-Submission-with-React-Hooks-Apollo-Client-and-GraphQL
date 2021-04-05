@@ -1,4 +1,3 @@
-import "./App.css";
 import {
   ApolloClient,
   InMemoryCache,
@@ -13,8 +12,11 @@ import Form from "./Components/Form";
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
     graphqlErrors.map(({ message, location, path }) => {
-      alert(`Graphql error ${message}`);
+      alert(`[Graphql error]: Message: ${message}, Path: ${path}`);
     });
+  }
+  if (networkError) {
+    console.log(`[Network error]: ${networkError.message}`);
   }
 });
 
@@ -31,9 +33,8 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      {" "}
-      {/* <GetUsers /> */}
       <Form />
+      <GetUsers />
     </ApolloProvider>
   );
 }

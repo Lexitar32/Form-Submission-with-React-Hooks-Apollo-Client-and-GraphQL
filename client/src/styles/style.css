@@ -1,0 +1,10 @@
+.do-big-width {
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  grid-gap: 5px;
+}
+
+.do-width {
+  width: 18rem;
+  margin: 8px auto;
+}

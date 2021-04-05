@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { LOAD_USERS } from "../GraphQL/Queries";
+import "../styles/style.css";
 
 function GetUsers() {
   const { error, loading, data } = useQuery(LOAD_USERS);
@@ -12,12 +13,24 @@ function GetUsers() {
   }, [data]);
 
   return (
-    <div>
-      {/* {" "}
-      {users.map((val) => {
-        return <h1> {val.firstName}</h1>;
-      })} */}
-    </div>
+    <>
+      <h2 className="text-center mt-3">All Users</h2>
+      <div className="container do-big-width mt-4">
+        {users.map((val) => {
+          return (
+            <div className="card do-width" key={val.id}>
+              <div className="card-header">
+                Full Name: {val.firstName} {val.lastName}
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">Email Address: {val.email}</li>
+                <li className="list-group-item">Password: {val.password}</li>
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
 
